@@ -110,4 +110,32 @@ or use the dashboard:
 
 ![Docker app screen](/public/screen-docker-app.png)
 
+# Kubernetes
+## Kubernetes Configuration
+
+### Overview
+In this project, we use Kubernetes (K8s) for orchestrating and managing our containerized Node.js application. The configurations for K8s are organized in a dedicated directory to maintain a clear structure and ease of navigation.
+
+### Directory Structure
+- **`/k8s` Directory:**
+    - This directory contains all the necessary Kubernetes YAML files for deploying our application. It includes configurations for various K8s resources such as Deployments, Services, and Ingresses.
+
+### Files Description
+- **`deployment.yaml`:**
+    - Defines how our Node.js application is deployed on the Kubernetes cluster. It specifies the Docker image to use, the number of replicas, and other deployment settings.
+- **`service.yaml`:**
+    - Contains the configuration for exposing our Node.js application to the outside world or within the Kubernetes cluster.
+- Additional files, such as `ingress.yaml`, `configmap.yaml`, or `secret.yaml`, may also be present depending on the specific needs of our deployment.
+
+### Usage
+- To deploy the application to a Kubernetes cluster, navigate to the `k8s` directory and run the following command:
+```bash
+kubectl apply -f . 
+```
+This command will apply all the Kubernetes configurations located in the k8s directory.
+
+### Note
+These files are meant to be used by developers who are familiar with Kubernetes operations. Please ensure you understand the configurations and modify them according to your deployment environment.
+
+For more detailed information on each configuration file and its purpose, please refer to the individual file documentation inside the k8s directory.
 

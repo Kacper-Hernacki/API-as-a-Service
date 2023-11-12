@@ -1,0 +1,11 @@
+# Example: service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-app-service
+spec:
+  type: LoadBalancer
+  ports:
+    - port: 80
+  selector:
+    app: my-app
