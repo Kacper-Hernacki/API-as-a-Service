@@ -108,4 +108,6 @@ Here’s how to get started with Docker Desktop:
 
 or use the dashboard:
 
-![Screenshot 2023-11-12 at 14.48.40.png](..%2F..%2F..%2F..%2Fvar%2Ffolders%2Fwd%2Fdlpgkmt96ys7clwttynzwv7w0000gn%2FT%2FTemporaryItems%2FNSIRD_screencaptureui_E7Wid2%2FScreenshot%202023-11-12%20at%2014.48.40.png)
+![Docker app screen](/public/screen-docker-app.png)
+
+
