@@ -1,3 +1,4 @@
+![Docker-Demo](/public/devops-thumbnail.png)
 # DOCKER-DEMO
 
 This repo was made for teaching full stack developers tha Docker technology. 
@@ -13,6 +14,7 @@ node src/index.js
 ```
 
 # Docker Commands Documentation
+![Docker](/public/DOCKER.png)
 [Official Docker docs](https://docs.docker.com/desktop/install/mac-install/)
 
 ## Introduction
@@ -111,6 +113,7 @@ or use the dashboard:
 ![Docker app screen](/public/screen-docker-app.png)
 
 # Kubernetes
+![Kubernetes](/public/kubernetes.png)
 ## Kubernetes Configuration
 
 ### Overview
