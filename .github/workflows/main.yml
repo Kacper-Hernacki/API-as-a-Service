@@ -1,0 +1,37 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main ]
+    # Add other triggers as necessary
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build and Push Docker image
+        run: |
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/my-docker-app:1.0 .
+          echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/my-docker-app:1.0
+
+  deploy:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Kubectl
+        uses: azure/setup-kubectl@v1
+
+      - name: Configure DigitalOcean Kubernetes
+        run: echo ${{ secrets.KUBECONFIG }} | base64 -d > $HOME/.kube/config
+
+      - name: Deploy to DigitalOcean Kubernetes
+        run: |
+          kubectl apply -f k8s/deployment.yaml
+          kubectl apply -f k8s/service.yaml
