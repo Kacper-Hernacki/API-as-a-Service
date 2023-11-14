@@ -10,7 +10,7 @@ Clone the repository and install dependencies for the project.
 App itself is made as a simple node.js script, which will be just used for learning purposes.
 Open terminal and in a project direstory, run:
 ```bash
-node src/index.js
+node src/app.js
 ```
 
 # Docker Commands Documentation

@@ -2,11 +2,11 @@
   "name": "docker-demo",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon src/index.js",
+    "start": "nodemon src/app.js",
     "build": "docker build -t kacperher/docker-demo:1.2 .",
     "push": "docker push  kacperher/docker-demo:1.2",
     "deploy": "kubectl apply -f k8s/"
