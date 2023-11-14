@@ -142,3 +142,7 @@ These files are meant to be used by developers who are familiar with Kubernetes 
 
 For more detailed information on each configuration file and its purpose, please refer to the individual file documentation inside the k8s directory.
 
+TODO:
+
+google cloud
+mongoDB 

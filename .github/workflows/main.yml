@@ -3,7 +3,8 @@ name: CI/CD Pipeline
 on:
   push:
     branches: [ main ]
-    # Add other triggers as necessary
+  pull_request:
+    branches: [ main ]
 
 jobs:
   build-and-push:
