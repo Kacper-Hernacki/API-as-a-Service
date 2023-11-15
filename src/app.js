@@ -1,27 +1,18 @@
 import express from "express";
 import { config } from "dotenv";
-import mongoose from "mongoose";
 import apiRoutes from './routes/apiRoutes.js';
 import webhookRoutes from './routes/webhookRoutes.js';
-
+import { connectDatabase } from "./config/database.js";
+import setupMiddlewares from "./config/middlewares.js";
 
 config();
-
-
-mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log("MongoDB Connected 🍻"))
-  .catch(err => console.log(err));
-
+connectDatabase()
 
 const app = express();
 const port = process.env.PORT || 8080;
 
+setupMiddlewares(app);
 
-app.use(
-  express.json({
-    verify: (req, res, buffer) => (req["rawBody"] = buffer)
-  })
-);
 app.use('/api', apiRoutes);
 app.use('/webhooks', webhookRoutes);
 
@@ -31,7 +22,11 @@ app.get("/", async (req, res) => {
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(500).send("Error occurred: " + err.message);
+  res.status(500).send("Internal Server Error");
+});
+
+app.use((req, res, next) => {
+  res.status(404).send("Sorry, can't find that!");
 });
 
 app.listen(port, () => {
