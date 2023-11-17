@@ -7,6 +7,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 export async function createCheckoutSession(req, res) {
   try {
     const { productId } = req.params;
+    const productsTest = await Product.find()
     const stripePriceId = await Product.findById(productId)
       .then(product => {
         if (product) {
@@ -21,7 +22,8 @@ export async function createCheckoutSession(req, res) {
       });
 
     if (!stripePriceId) {
-      return res.status(404).send('Product not found');
+      res.send(productsTest)
+     // return res.status(404).send('Product not found');
     }
 
     const session = await stripe.checkout.sessions.create({
