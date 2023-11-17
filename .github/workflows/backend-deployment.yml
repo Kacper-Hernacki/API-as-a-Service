@@ -1,0 +1,55 @@
+name: CI/CD-for-backend-services
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+env:
+  GCP_PROJECT: your-gcp-project-id
+  GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+  IMAGE: gcr.io/your-gcp-project-id/my-docker-app
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@master
+        with:
+          project_id: ${{ env.GCP_PROJECT }}
+          service_account_key: ${{ env.GCP_SA_KEY }}
+          export_default_credentials: true
+
+      - name: Build and Push Docker image
+        run: |
+          docker build -t ${{ env.IMAGE }}:1.0 .
+          docker push ${{ env.IMAGE }}:1.0
+
+  deploy:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@master
+        with:
+          project_id: ${{ env.GCP_PROJECT }}
+          service_account_key: ${{ env.GCP_SA_KEY }}
+          export_default_credentials: true
+
+      - name: Set up Kubectl
+        run: gcloud container clusters get-credentials your-cluster-name --zone your-cluster-zone
+
+      - name: Deploy to Google Kubernetes Engine
+        run: |
+          kubectl apply -f k8s/deployment.yaml
+          kubectl apply -f k8s/service.yaml
+      - name: Deploy MongoDB Service
+        run: kubectl apply -f k8s/mongodb-service.yaml

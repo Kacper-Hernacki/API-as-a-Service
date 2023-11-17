@@ -1,20 +1,26 @@
-# Example: deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: my-app-deployment
+  name: mongodb-deployment
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
-      app: my-app
+      app: mongodb
   template:
     metadata:
       labels:
-        app: my-app
+        app: mongodb
     spec:
       containers:
-        - name: my-app
-          image: kacperher/docker-demo:1.2
+        - name: mongodb
+          image: mongo
           ports:
-            - containerPort: 8080
+            - containerPort: 27017
+          volumeMounts:
+            - name: mongodb-data
+              mountPath: /data/db
+  volumes:
+    - name: mongodb-data
+      persistentVolumeClaim:
+        claimName: mongodb-pvc
