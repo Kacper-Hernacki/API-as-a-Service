@@ -22,8 +22,7 @@ export async function createCheckoutSession(req, res) {
       });
 
     if (!stripePriceId) {
-      res.send(productsTest)
-     // return res.status(404).send('Product not found');
+      return res.status(404).send('Product not found');
     }
 
     const session = await stripe.checkout.sessions.create({
