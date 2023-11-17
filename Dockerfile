@@ -1,4 +1,4 @@
-FROM node:16
+FROM --platform=linux/amd64 kacperher/docker-demo:latest
 
 WORKDIR /app
 
