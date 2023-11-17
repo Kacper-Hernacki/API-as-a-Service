@@ -28,49 +28,49 @@ This documentation provides a quick reference to basic Docker commands used in o
 
 ### 1. Starting Services with Docker Compose
 ```bash
-docker compose up
+server compose up
 ```
 This command starts all the services defined in your docker-compose.yml file.
 
 ### 2. Listing Running Containers
 ```bash
-docker ps
+server ps
 ```
 Use this to see all currently running containers.
 
 ### 3. Running a Container with Port Mapping
 ```bash
-docker run -p 5001:8080 c9b19b0e6729
+server run -p 5001:8080 c9b19b0e6729
 ```
 This command runs a container and maps port 8080 inside the container to port 5001 on the host machine.
 
 ### 4. Building a Docker Image with a Tag
 ```bash
-docker build -t kacperher/docker-demo:1.1 .
+server build -t kacperher/server-demo:1.1 .
 ```
 This builds a Docker image from a Dockerfile in the current directory and tags it with a specific version.
 
 ### 5. Running a Container from an Image
 ```bash
-docker run f6413f4104c8
+server run f6413f4104c8
 ```
 This command creates and starts a container from the specified image.
 
 ### 6. Removing a Container
 ```bash
-docker rm d8f60915f384
+server rm d8f60915f384
 ```
 Use this command to remove a stopped container.
 
 ### 7. Listing All Containers (Running and Stopped)
 ```bash
-docker ps -a
+server ps -a
 ```
 This shows all containers, including those that are not currently running.
 
 ### 8. Running a Specific Container
 ```bash
-docker run c9b19b0e6729
+server run c9b19b0e6729
 ```
 This starts a container based on the specified image ID.
 
@@ -105,7 +105,7 @@ Here’s how to get started with Docker Desktop:
 - **Example Command:** To run a simple Hello World container, type:
 
 ```bash
-  docker run hello-world
+  server run hello-world
 ```
 
 or use the dashboard:

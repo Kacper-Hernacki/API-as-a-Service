@@ -7,7 +7,6 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 export async function createCheckoutSession(req, res) {
   try {
     const { productId } = req.params;
-    const productsTest = await Product.find()
     const stripePriceId = await Product.findById(productId)
       .then(product => {
         if (product) {
