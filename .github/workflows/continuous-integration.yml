@@ -9,12 +9,16 @@ on:
     branches: [develop]
     paths:
       - 'server/**'
+
 jobs:
   ci:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - name: Test
-        run: |
-          npm install
-          npm test
+      - name: Install dependencies
+        run: npm install
+        working-directory: server
+
+      - name: Run tests
+        run: npm test
+        working-directory: server
