@@ -2,9 +2,13 @@ name: Continuous Integration
 
 on:
   pull_request:
+    branches: [develop]
+    paths:
+      - 'server/**'
   push:
     branches: [develop]
-
+    paths:
+      - 'server/**'
 jobs:
   ci:
     runs-on: ubuntu-latest

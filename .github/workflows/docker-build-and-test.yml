@@ -3,8 +3,12 @@ name: Docker Build and Test
 on:
   push:
     branches: [ develop ]
+    paths:
+      - 'server/**'
   pull_request:
     branches: [ develop ]
+    paths:
+      - 'server/**'
 
 jobs:
   test-and-build:
