@@ -9,12 +9,12 @@ import AuthProvider from "react-auth-kit";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <ContextProvider>
-      <AuthProvider authType={"cookie"}
-                    authName={"_auth"}
-                    cookieDomain={window.location.hostname}
-                    cookieSecure={window.location.protocol === "https:"}>
+      {/*<AuthProvider authType={"cookie"}*/}
+      {/*              authName={"_auth"}*/}
+      {/*              cookieDomain={window.location.hostname}*/}
+      {/*              cookieSecure={window.location.protocol === "https:"}>*/}
         <RouterProvider router={router} />
-      </AuthProvider>
+      {/*</AuthProvider>*/}
     </ContextProvider>
   </React.StrictMode>
 );
